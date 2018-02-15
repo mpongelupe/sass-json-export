@@ -3,13 +3,13 @@
 /// @param {*} $value - value to be stringified
 /// @param {String} $flag (all) - output driver
 /// @require {function} json-encode
-@mixin json-encode($value, $flag: 'all') {
+@mixin json-encode($value, $name: 'json-encode', $flag: 'all') {
   $flag: if(index('all' 'regular' 'media' 'comment', $flag), $flag, 'all');
   $json: json-encode($value);
 
   // Persistent comment
   @if $flag == 'comment' or $flag == 'all' {
-    /*! json-encode: #{$json} */
+    /*! *-*{ "#{$name}": #{$json} }*-* */
   }
   // Regular property value pair
   @if $flag == 'regular' or $flag == 'all' {
